@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        header {
+            background-color: #8B4513;
+            text-align: center;
+            padding: 20px;
+        }
+        section ul {
+            display: none;
+        }
+        h3 {
+            cursor: pointer;
+            text-decoration: underline; 
+            transition: color 0.2s;
+        }
+        h3:hover {
+            color: blue;
+        }
+
+        li {
+            cursor: pointer; 
+            transition: color 0.2s;
+        }
+        li:hover {
+            color: blue;
+        }
+    </style>
+</head>
+<body style="background-color: wheat">
+
+    <header>
+        <h1 style="color: white; font-family: 'Courier New', Courier, monospace;">Digital Recipe Book</h1>
+    </header>
+    
+    <section id="Introduction">
+        <h2 style="text-align: center"><u>Introduction</u></h2>
+        <p style="text-align: center">This is a website for various recipes. Click on a header to reveal their recipes. 
+            Click on a recipe to display their ingredients and instructions. Enjoy!</p>
+    </section>
+
+    <main>
+        <section id="Appetizers">
+            <h3 onclick="toggleRecipes('Appetizers')">Appetizers</h3>
+            <ul>
+                <li onclick="displayRecipe('Appetizers', 'Mozzarella Sticks')">Mozzarella Sticks</li>
+                <li onclick="displayRecipe('Appetizers', 'Cheese & Crackers')">Cheese & Crackers</li>
+            </ul>
+        </section>
+
+        <section id="Entrees">
+            <h3 onclick="toggleRecipes('Entrees')">Entrees</h3>
+            <ul>
+                <li onclick="displayRecipe('Entrees', 'Pepperoni Pizza')">Pepperoni Pizza</li>
+                <li onclick="displayRecipe('Entrees', 'Hamburger')">Hamburger</li>
+            </ul>
+        </section>
+
+        <section id="Desserts">
+            <h3 onclick="toggleRecipes('Desserts')">Desserts</h3>
+            <ul>
+                <li onclick="displayRecipe('Desserts', 'Cheesecake')">Cheesecake</li>
+                <li onclick="displayRecipe('Desserts', 'Pumpkin Pie')">Pumpkin Pie</li>
+            </ul>
+        </section>
+
+        <section id="AboutMe">
+            <h3 onclick="toggleAboutMe()">About Me</h3>
+            <ul id="aboutMeList" style="display: none;">
+                <li>Email: email@website.com</li>
+                <li>Phone: 123-456-7890</li>
+            </ul>
+        </section>
+    </main>
+    
+
+
+    <footer>
+        <hr>
+        <p>© Digital Recipe Book</p>
+    </footer>
+
+    <script>
+        function toggleRecipes(sectionId) {
+            var recipes = document.getElementById(sectionId).querySelector('ul');
+            if (recipes.style.display === 'none' || recipes.style.display === '') {
+                recipes.style.display = 'block';
+            } else {
+                recipes.style.display = 'none';
+            }
+        }
+
+        function displayRecipe(sectionId, recipeName) {
+            var ingredients = "";
+            var instructions = "";
+
+            switch (sectionId) {
+                case 'Appetizers':
+                    if (recipeName === "Mozzarella Sticks") {
+                        ingredients = "Mozzarella, Bread Crumbs, Oil, Marinara Sauce";
+                        instructions = "1. Coat mozzarella sticks in breadcrumbs.\n2. Heat oil in a pan over medium heat.\n3. Fry mozzarella sticks until golden brown.\n4. Serve with marinara sauce.";
+                    } else if (recipeName === "Cheese & Crackers") {
+                        ingredients = "Cheese, Crackers";
+                        instructions = "1. Arrange cheese and crackers on a plate.\n2. Serve and enjoy!";
+                    }
+                    break;
+                case 'Entrees':
+                    if (recipeName === "Pepperoni Pizza") {
+                        ingredients = "Pizza Dough, Tomato Sauce, Mozzarella Cheese, Pepperoni";
+                        instructions = "1. Roll out pizza dough into desired shape.\n2. Spread tomato sauce over the dough.\n3. Sprinkle mozzarella cheese over the sauce.\n4. Arrange pepperoni slices on top.\n5. Bake in a preheated oven at 425°F (220°C) for 12-15 minutes or until crust is golden and cheese is bubbly.\n6. Slice and serve.";
+                    } else if (recipeName === "Hamburger") {
+                        ingredients = "Ground Beef, Hamburger Bun, Lettuce, Tomato, Onion, Pickles";
+                        instructions = "1. Form ground beef into patties.\n2. Grill or fry patties until cooked to desired doneness.\n3. Toast hamburger buns.\n4. Assemble burgers with lettuce, tomato, onion, pickles, and condiments as desired.\n5. Serve and enjoy!";
+                    }
+                    break;
+                case 'Desserts':
+                    if (recipeName === "Cheesecake") {
+                        ingredients = "Cream Cheese, Graham Cracker Crumbs, Sugar, Vanilla Extract";
+                        instructions = "1. Preheat oven to 325°F (160°C).\n2. Combine graham cracker crumbs, sugar, and melted butter.\n3. Press mixture into the bottom of a springform pan to form the crust.\n4. Bake crust for 10 minutes and let it cool.\n5. In a mixing bowl, beat cream cheese, sugar, and vanilla extract until smooth.\n6. Pour filling over the cooled crust.\n7. Bake for 50-60 minutes or until the center is set.\n8. Let cheesecake cool completely, then refrigerate for several hours or overnight before serving.";
+                    } else if (recipeName === "Pumpkin Pie") {
+                        ingredients = "Pumpkin Puree, Pie Crust, Sugar, Eggs, Cinnamon, Nutmeg, Cloves";
+                        instructions = "1. Preheat oven to 425°F (220°C).\n2. In a large bowl, mix pumpkin puree, sugar, eggs, and spices until well combined.\n3. Pour mixture into pie crust.\n4. Bake for 15 minutes, then reduce oven temperature to 350°F (175°C) and continue baking for 40-50 minutes or until filling is set.\n5. Let cool before serving.";
+                    }
+                    break;
+                default:
+                    ingredients = "Ingredients not available";
+                    instructions = "Instructions not available";
+            }
+
+            alert("Recipe for " + recipeName + ":\n\nIngredients:\n" + ingredients + "\n\nInstructions:\n" + instructions);
+        }
+
+        function toggleAboutMe() {
+            var aboutMeList = document.getElementById("aboutMeList");
+            if (aboutMeList.style.display === 'none' || aboutMeList.style.display === '') {
+                aboutMeList.style.display = 'block';
+            } else {
+                aboutMeList.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
